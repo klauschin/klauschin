@@ -9,34 +9,35 @@
 
 /*	U1 SETTINGS	*/
 
-// @font-face {
-//   font-family: 'Sohne Buch';
-//   src: url(<?phpecho$font_path.'sohne-buch-regular.woff';?>) format('woff'),
-//     url(<?phpecho$font_path.'sohne-buch-regular.woff2';?>) format('woff2'),
-//     url(<?phpecho$font_path.'sohne-buch-regular.ttf';?>) format('ttf');
-//   font-weight: 400;
-//   font-style: normal;
-//   font-display: block;
-// }
+@font-face {
+  font-family: 'AW Conqueror';
+  src: url('/fonts/font-aw-conqueror-light.woff') format('woff'),
+    url('/fonts/font-aw-conqueror-light.woff2') format('woff2'),
+    url('/fonts/font-aw-conqueror-light.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: block;
+}
 
 :root {
   --cr-black: #000000;
   --cr-white: #ffffff;
   --cr-subdued: #dddddd;
   --cr-subtle: #f9f9f9;
-  --cr-berry: #331b97;
+  --cr-offwhite: #f4f1ec;
+  --cr-blackhaze: #e1ded7;
 
-  --t-h-1: 400 130px/1 Helvetica, sans-serif;
-  --t-h-2: 400 80px/1 Helvetica, sans-serif;
-  --t-h-3: 400 60px/1 Helvetica, sans-serif;
+  --t-h-1: 55px/1.1 'AW Conqueror', Helvetica, sans-serif;
+  --t-h-2: 38px/1.1 'AW Conqueror', Helvetica, sans-serif;
+  --t-h-3: 14px/1.1 'AW Conqueror', Helvetica, sans-serif;
 
-  --t-b-1: 400 24px/1.52 Helvetica, sans-serif;
-  --t-b-2: 400 23px/1.52 Helvetica, sans-serif;
-  --t-b-3: 400 21px/1.52 Helvetica, sans-serif;
+  --t-b-1: 400 24px/1.1 Helvetica, sans-serif;
+  --t-b-2: 300 22px/1.1 Helvetica, sans-serif;
+  --t-b-3: 400 18px/1.1 Helvetica, sans-serif;
+  --t-b-4: 400 14px/1.1 Helvetica, sans-serif;
 
-  --t-l-1: 400 24px/1.17 Helvetica, sans-serif;
-  --t-l-2: 400 23px/1 Helvetica, sans-serif;
-  --t-l-3: 400 18px/1.17 Helvetica, sans-serif;
+  --t-l-1: 400 14px/1 Helvetica, sans-serif;
+  --t-l-2: 700 14px/1 Helvetica, sans-serif;
 
   --s-1: 5px;
   --s-2: 10px;
@@ -140,8 +141,11 @@ html {
   color: var(--cr-subtle);
 }
 
-.cr-berry {
-  color: var(--cr-berry);
+.cr-offwhite {
+  color: var(--cr-offwhite);
+}
+.cr-blackhaze {
+  color: var(--cr-blackhaze);
 }
 
 .bg-black {
@@ -156,8 +160,11 @@ html {
 .bg-subtle {
   background-color: var(--cr-subtle);
 }
-.bg-berry {
-  background-color: var(--cr-berry);
+.bg-offwhite {
+  background-color: var(--cr-offwhite);
+}
+.bg-blackhaze {
+  background-color: var(--cr-blackhaze);
 }
 
 /*	U3 COLOR - END	*/

@@ -1,7 +1,8 @@
 {
   "root": true,
   "project": {
-    "name": "klauschin"
+    "name": "klauschin",
+    "basePath": "/studio"
   },
   "api": {
     "projectId": "fx6ih18s",
@@ -16,9 +17,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
