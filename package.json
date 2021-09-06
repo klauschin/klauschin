@@ -20,6 +20,7 @@
     "sass": "^1.38.0"
   },
   "devDependencies": {
+    "@sanity/cli": "^2.0.5",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
     "lerna": "^4.0.0"

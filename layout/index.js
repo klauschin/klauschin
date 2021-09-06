@@ -7,19 +7,19 @@ const Layout = (props) => {
   return (
     <>
       <Head>
-        <Link
+        <link
           rel="preload"
           href="/fonts/font-aw-conqueror-light.ttf"
           as="font"
           crossOrigin=""
         />
-        <Link
+        <link
           rel="preload"
           href="/fonts/font-aw-conqueror-light.woff"
           as="font"
           crossOrigin=""
         />
-        <Link
+        <link
           rel="preload"
           href="/fonts/font-aw-conqueror-light.woff2"
           as="font"
