@@ -1,32 +1,53 @@
-import HomePage from '@/container/HomePage';
-import { useRouter } from 'next/router';
-import { groq } from 'next-sanity';
-import { usePreviewSubscription, urlFor, PortableText } from '@/lib/sanity';
-import { getClient } from '@/lib/sanity.server';
+import { getStaticPage } from '@/data';
+import PageTemplate from '@/container/page-template';
+import Error from 'next/error';
+import { Module } from '@/components/modules';
+import Link from 'next/link';
 
-const homePageDataQuery = groq`*[_type == "homepage"][0]`;
+function IndexPage({ data }) {
+  const { page, site } = data;
 
-function IndexPage(props) {
-  const { homeData, preview } = props;
+  if (!page) {
+    return (
+      <Error
+        title={
+          <Link href="http://localhost:3333/studio/desk/pages;homePage">
+            <a target="_blank">Go settings</a>
+          </Link>
+        }
+        statusCode="Home Page is not set in Sanity"
+      />
+    );
+  }
 
-  const router = useRouter();
-
-  const { data: homePageData } = usePreviewSubscription(homePageDataQuery, {
-    initialData: homeData,
-    enabled: preview || router.query.preview !== null,
-  });
-
-  return <HomePage mainData={homePageData} />;
+  return (
+    <>
+      {page.pageTemplate === 'default' ? (
+        <div className="general-page cr-black">
+          {page.modules?.map((module, key) => (
+            <Module key={key} index={key} module={module} />
+          ))}
+        </div>
+      ) : (
+        <PageTemplate site={site} page={page} />
+      )}
+      <style jsx>{``}</style>
+    </>
+  );
 }
 
-export async function getStaticProps({ params = {}, preview = false }) {
-  const homeData = await getClient(preview).fetch(homePageDataQuery);
+export async function getStaticProps({ preview = {}, previewData }) {
+  const pageData = await getStaticPage(null, {
+    active: preview,
+    token: previewData?.token,
+  });
 
   return {
     props: {
       preview,
-      homeData,
+      data: pageData,
     },
+    revalidate: 30,
   };
 }
 

@@ -1,13 +1,11 @@
 /*
 
 	U1 SETTINGS
-	U2 COLOR 
+	U2 COLOR
 	U3 TYPOGRAPHY
 	U4 LAYOUTS
 
 */
-
-/*	U1 SETTINGS	*/
 
 @font-face {
   font-family: 'AW Conqueror';
@@ -18,36 +16,38 @@
   font-style: normal;
   font-display: block;
 }
+/*	U1 SETTINGS	*/
 
 :root {
   --cr-black: #000000;
   --cr-white: #ffffff;
   --cr-subdued: #dddddd;
-  --cr-subtle: #f9f9f9;
+  --cr-subtle: #30229a;
+  --cr-blue: #2e18d0;
   --cr-offwhite: #f4f1ec;
-  --cr-blackhaze: #e1ded7;
 
-  --t-h-1: 55px/1.1 'AW Conqueror', Helvetica, sans-serif;
-  --t-h-2: 38px/1.1 'AW Conqueror', Helvetica, sans-serif;
-  --t-h-3: 14px/1.1 'AW Conqueror', Helvetica, sans-serif;
+  --t-h-1: 400 55px/1.1 'AW Conqueror', Arial, serif;
+  --t-h-2: 400 24px/1.1 'AW Conqueror', Arial, serif;
+  --t-h-3: 400 18px/1.1 'AW Conqueror', Arial, serif;
+  --t-b-1: 24px/1.25 'AW Conqueror', Arial, serif;
+  --t-b-2: 16px/1.25 'AW Conqueror', Arial, serif;
+  --t-l-1: 14px/1 'AW Conqueror', Arial, serif;
 
-  --t-b-1: 400 24px/1.1 Helvetica, sans-serif;
-  --t-b-2: 300 22px/1.1 Helvetica, sans-serif;
-  --t-b-3: 400 18px/1.1 Helvetica, sans-serif;
-  --t-b-4: 400 14px/1.1 Helvetica, sans-serif;
-
-  --t-l-1: 400 14px/1 Helvetica, sans-serif;
-  --t-l-2: 700 14px/1 Helvetica, sans-serif;
-
-  --s-1: 5px;
-  --s-2: 10px;
-  --s-3: 20px;
+  --s-1: 10px;
+  --s-2: 20px;
+  --s-3: 30px;
   --s-4: 40px;
-  --s-5: 80px;
-  --s-6: 160px;
+  --s-5: 60px;
+  --s-6: 120px;
+
+  --w-1: 1200px;
+  --w-2: 1040px;
+  --w-3: 600px;
+  --w-4: 420px;
+  --w-5: 300px;
 
   --s-section: var(--s-5);
-  --s-section-half: 60px;
+  --s-section-half: var(--s-4);
   --s-contain: 4vw;
   --s-contain-max: 1600px;
   --s-edge: var(--s-contain);
@@ -59,56 +59,27 @@
 
 ::selection {
   text-shadow: none;
-  color: var(--cr-berry);
+  background-color: rgba(125, 125, 125, 0.3);
 }
 
 ::-moz-selection {
   text-shadow: none;
-  color: var(--cr-berry);
-}
-
-.cr-bloodorange ::selection {
-  text-shadow: none;
-  color: var(--cr-bloodorange);
-}
-
-.cr-bloodorange ::-moz-selection {
-  text-shadow: none;
-  color: var(--cr-bloodorange);
-}
-
-.bg-bloodorange ::selection {
-  text-shadow: none;
-  color: var(--cr-gold);
-}
-
-.bg-bloodorange ::-moz-selection {
-  text-shadow: none;
-  color: var(--cr-bloodorange);
-}
-
-@media screen and (max-width: 1200px) {
-  :root {
-  }
-}
-
-@media screen and (max-width: 900px) {
-  :root {
-  }
+  background-color: rgba(125, 125, 125, 0.3);
 }
 
 @media screen and (max-width: 600px) {
   :root {
-    --t-h-1: 38px/1.1 'AW Conqueror', Helvetica, sans-serif;
-    --s-contain: 6vw;
     --s-section: var(--s-4);
     --s-section-half: var(--s-3);
   }
 }
 
-@media screen and (min-width: 1777px) {
-  /*	update edge spacing when .c reaches its max width	*/
+/*
+	update edge spacing when .c reaches its max width
+	1600 var(--s-contain-max) / 1 - var(--s-contain)*2
+*/
 
+@media screen and (min-width: 1740px) {
   :root {
     --s-edge: calc((100vw - var(--s-contain-max)) / 2);
   }
@@ -119,6 +90,10 @@
     outline-offset: 3px;
     outline-color: transparent;
   }
+
+  *:focus-visible {
+    outline: 1px dotted rgba(125, 125, 125, 0.8);
+  }
 }
 
 /*	U1 SETTINGS - END	*/
@@ -128,7 +103,6 @@
 html {
   color: var(--cr-black);
 }
-
 .cr-black {
   color: var(--cr-black);
 }
@@ -141,12 +115,8 @@ html {
 .cr-subtle {
   color: var(--cr-subtle);
 }
-
 .cr-offwhite {
   color: var(--cr-offwhite);
-}
-.cr-blackhaze {
-  color: var(--cr-blackhaze);
 }
 
 .bg-black {
@@ -164,10 +134,6 @@ html {
 .bg-offwhite {
   background-color: var(--cr-offwhite);
 }
-.bg-blackhaze {
-  background-color: var(--cr-blackhaze);
-}
-
 /*	U3 COLOR - END	*/
 
 /*	U3 TYPOGRAPHY	*/
@@ -179,22 +145,16 @@ body {
 }
 
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font: var(--t-h-1);
-}
-
 .t-h-1 {
   font: var(--t-h-1);
 }
 
+h2,
 .t-h-2 {
   font: var(--t-h-2);
 }
 
+h3,
 .t-h-3 {
   font: var(--t-h-3);
 }
@@ -207,28 +167,18 @@ ul {
 
 .t-b-1 {
   font: var(--t-b-1);
+  letter-spacing: 0.03em;
 }
 
 .t-b-2 {
   font: var(--t-b-2);
-}
-
-.t-b-3 {
-  font: var(--t-b-3);
+  letter-spacing: 0.03em;
 }
 
 .t-l-1 {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   font: var(--t-l-1);
-  letter-spacing: 0.1px;
-}
-
-.t-l-2 {
-  letter-spacing: 0.1px;
-  font: var(--t-l-2);
-}
-
-.t-l-3 {
-  font: var(--t-l-3);
 }
 
 /*	U3 TYPOGRAPHY - END	*/
@@ -241,10 +191,17 @@ ul {
   html {
     background-color: var(--cr-subtle);
   }
-  body {
+
+  /* header needed separately in case it is fixed */
+  body,
+  header {
     max-width: 2000px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  body {
+    background-color: var(--cr-white);
   }
 }
 
@@ -261,62 +218,101 @@ ul {
   margin-right: auto;
 }
 
-.c-1 {
-  max-width: 1200px;
+.c-1,
+.w-1 {
+  max-width: var(--w-1);
+}
+.c-2,
+.w-2 {
+  max-width: var(--w-2);
+}
+.c-3,
+.w-3 {
+  max-width: var(--w-3);
+}
+.c-4,
+.w-4 {
+  max-width: var(--w-4);
+}
+.c-5,
+.w-5 {
+  max-width: var(--w-5);
 }
 
-.c-2 {
-  max-width: 900px;
-}
-
-.c-3 {
-  max-width: 600px;
-}
-
-.c-4 {
-  max-width: 450px;
-}
-
-.f-h,
-.f-h-top,
-.f-h-center,
-.f-h-bottom {
-  /* f for flex */
-  display: -webkit-flex;
+.f-h {
   display: flex;
-  flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-}
-
-.f-h-top {
-  -webkit-align-items: flex-start;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
-.f-h-center {
-  -webkit-align-items: center;
-  align-items: center;
-}
-
-.f-h-bottom {
-  -webkit-align-items: flex-end;
-  align-items: flex-end;
-}
-
-.f-v,
-.f-v-middle {
-  /* f, v for flex vertical */
-  display: -webkit-flex;
+.f-v {
   display: flex;
-  -webkit-flex-direction: column;
   flex-direction: column;
-  -webkit-flex-wrap: nowrap;
+}
+
+.f-w {
+  flex-wrap: wrap;
+}
+.f-nw {
   flex-wrap: nowrap;
 }
-
-.f-v-middle {
-  -webkit-justify-content: center;
+.f-a-s {
+  align-items: stretch;
+}
+.f-a-c {
+  align-items: center;
+}
+.f-a-e {
+  align-items: flex-end;
+}
+.f-j-s {
+  justify-content: flex-start;
+}
+.f-j-c {
   justify-content: center;
+}
+.f-j-e {
+  justify-content: flex-end;
+}
+.f-j-b {
+  justify-content: space-between;
+}
+
+.g {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.g-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+.g-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.g-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.g-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.g-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+.g-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.g-gap-1 {
+  grid-gap: var(--s-1);
+}
+.g-gap-2 {
+  grid-gap: var(--s-2);
+}
+.g-gap-3 {
+  grid-gap: var(--s-3);
+}
+.g-gap-4 {
+  grid-gap: var(--s-4);
 }
 
 .p-fill {
@@ -336,10 +332,12 @@ ul {
   transform: translate3d(-50%, -50%, 0);
 }
 
+/* hidden at page load. animated in via the css-animations file */
 .avoid-style-flash {
   visibility: hidden;
 }
 
+/* no highlighting (via ::selection) */
 .user-select-disable {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -347,6 +345,7 @@ ul {
   user-select: none;
 }
 
+/* for accessibility (e.g. a form label that isn't needed for regular users) */
 .screen-reader-only {
   position: absolute !important;
   left: -10000px !important;
@@ -356,11 +355,43 @@ ul {
   overflow: hidden !important;
 }
 
-.clear-float:after {
-  content: '';
+/*
+for smooth-scrolling to targets while there is a sticky header
+there currently is no native way of smooth scrolling on iOS
+*/
+.anchor {
   display: block;
-  height: 0;
-  clear: both;
+  position: relative;
+  top: calc(0px - var(--s-announcement) - var(--s-header) - var(--s-4));
+  visibility: hidden;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .tablet-up-only {
+    display: none !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .tablet-down-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .mobile-up-only {
+    display: none !important;
+  }
+}
+
+@media (min-width: 601px) {
+  .mobile-down-only {
+    display: none !important;
+  }
 }
 
 /*	U4 LAYOUTS - END	*/

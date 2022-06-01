@@ -1,5 +1,4 @@
-.content-layout,
-.shopify-policy__body {
+.content-layout {
   & > * {
     max-width: 100%;
     margin: var(--s-4) auto;
@@ -17,10 +16,13 @@
   h1:not(:first-child),
   h2:not(:first-child),
   h3:not(:first-child),
-  h4:not(:first-child),
   h5:not(:first-child),
   h6:not(:first-child) {
     margin: var(--s-4) 0 var(--s-3);
+  }
+  h4:not(:first-child) {
+    margin-top: var(--s-5);
+    font: var(--t-h-3);
   }
 
   h1 {
@@ -41,21 +43,32 @@
     font: var(--t-h-4);
   }
 
-  p,
-  ol,
-  ul {
-    margin: var(--s-3) auto;
-    font: var(--t-b-2);
-
-    a {
-      text-decoration: underline;
+  p {
+    letter-spacing: 0.03em;
+    line-height: 24px;
+    color: var(--cr-gray);
+    strong {
+      font: var(--t-h-4);
+      color: var(--cr-black);
     }
+  }
+
+  a {
+    color: var(--cr-blue);
+    text-decoration: underline;
+  }
+
+  br {
+    content: '';
+    display: block;
+    margin-bottom: var(--s-1);
   }
 
   ol,
   ul {
     list-style-position: inside;
     padding: 0 0 0 var(--s-3);
+    margin: var(--s-3) auto;
     font: var(--t-b-2);
 
     li:not(:last-child) {
@@ -124,14 +137,14 @@
 }
 
 .type-spacing {
+  & > *:not(:last-child) {
+    margin-bottom: var(--s-3);
+  }
+
   .t-h-1:not(:last-child),
   .t-h-2:not(:last-child),
   .t-h-3:not(:last-child) {
-    margin: 0 0 var(--s-2);
-  }
-
-  & > *:not(:last-child) {
-    margin: 0 0 var(--s-3);
+    margin-bottom: var(--s-2);
   }
 
   ul,
@@ -189,60 +202,6 @@ button[disabled],
 input[disabled] {
   background-color: var(--cr-subdued);
   pointer-events: none;
-}
-
-.object-fit,
-.object-contain {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  -o-user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-
-  &.object-fit > *,
-  &.object-contain > * {
-    position: relative;
-    width: 101%;
-    height: 101% !important;
-    max-width: none;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    transform: translate3d(-50%, -50%, 0);
-    -webkit-backface-visibility: hidden;
-  }
-
-  &.object-fit > * {
-    object-fit: cover;
-  }
-
-  &.object-contain > * {
-    width: 100%;
-    height: 100% !important;
-    object-fit: contain;
-  }
-
-  &.object-fit > picture,
-  &.object-fit > iframe {
-    top: 0;
-    left: 0;
-    -webkit-transform: unset;
-    transform: unset;
-    object-fit: unset;
-  }
-
-  &.object-fit > picture > img {
-    width: 100%;
-    height: 101% !important;
-    object-fit: cover;
-    -webkit-backface-visibility: hidden;
-  }
 }
 
 input[type='radio'],
@@ -342,6 +301,15 @@ input[type='checkbox'] {
     line-height: 1;
   }
 
+  select {
+    padding: 0;
+    background: url(/assets/svg-caret-down.svg) right 20px center/10px no-repeat;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+
   textarea {
     white-space: normal;
     height: 200px;
@@ -409,102 +377,5 @@ form {
     left: 0;
     -webkit-animation: 0.6s 0.4s fadeIn both;
     animation: 0.6s 0.4s fadeIn both;
-  }
-}
-
-.item-quantity {
-  height: var(--s-5);
-  box-shadow: inset 0 0 0 1px var(--cr-subtle);
-
-  button[data-quantity-trigger],
-  input[name='quantity'] {
-    position: relative;
-    display: inline-block;
-    height: var(--s-5);
-    width: 60px;
-    text-align: center;
-  }
-
-  input[name='quantity'] {
-    flex: 1;
-    pointer-events: none;
-  }
-
-  input[name='quantity']::-webkit-inner-spin-button,
-  input[name='quantity']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  button[data-quantity-trigger]:before,
-  button[data-quantity-trigger]:after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 20px;
-    height: 2px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--cr-black);
-  }
-
-  button[data-quantity-trigger='increase']:after {
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-}
-
-.item-swatches-color {
-  button,
-  input {
-    position: relative;
-    display: inline-block;
-    width: var(--s-3);
-    height: var(--s-3);
-    margin: 0 var(--s-2) var(--s-2) 0;
-    border: 1px solid var(--cr-subtle);
-    border-radius: 100%;
-    box-shadow: 0 0 0 3px transparent, 0 0 0 3px transparent;
-    transition: 0.2s;
-    cursor: pointer;
-  }
-
-  button:not(.is-active):hover {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-
-  button.is-active,
-  input:checked {
-    box-shadow: 0 0 0 2px var(--cr-white), 0 0 0 3px var(--cr-subdued);
-  }
-}
-
-.summary {
-  display: flex;
-  display: -webkit-flex;
-  flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-
-  & > *:not(.summary-left):not(.summary-right) {
-    display: block;
-    width: 100%;
-  }
-
-  & > *:not(.summary-left):not(.summary-right):not(:last-child) {
-    margin: 0 0 var(--s-2);
-  }
-
-  .summary-left {
-    flex: 1;
-    margin: 0 var(--s-3) 0 0;
-  }
-
-  .summary-right {
-    text-align: right;
-  }
-
-  &:not(:last-child) {
-    margin: 0 0 var(--s-1);
   }
 }
