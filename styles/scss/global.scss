@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background-color: #333;
+}
+
 .header-space {
   height: calc(var(--s-announcement) + var(--s-header));
 }
@@ -9,7 +13,6 @@ html {
 .page-content {
   position: relative;
   padding: var(--s-header) 0 0;
-  color: var(--cr-black);
 }
 
 .general-page {
