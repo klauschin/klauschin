@@ -30,10 +30,6 @@ const InteractiveGradient = () => {
 
   const handleMouseMove = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
-    console.log(
-      '🚀 ~ file: template-home.js ~ line 10 ~ handleMouseMove ~ e.clientX',
-      e.clientX
-    );
   };
 
   useEffect(() => {

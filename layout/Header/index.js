@@ -119,14 +119,15 @@ function Header({ data }) {
             'is-open': isMobileMenuOpen,
           })}
         >
-          {windows.width < theme.layout.mediaSmall
+          {data?.menuMobilePrimary?.items &&
+          windows.width < theme.layout.mediaSmall
             ? mobileMenuTriggerDOM
-            : data?.menuDesktop?.items && (
+            : data?.menuMobilePrimary?.items && (
                 <Menu items={data.menuDesktop.items} />
               )}
         </div>
       </header>
-      {data?.menuMobilePrimary && (
+      {data && data?.menuMobilePrimary && (
         <MobileMenu
           menuData={data.menuMobilePrimary}
           isOpen={isMobileMenuOpen}
