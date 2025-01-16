@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
-import Img from '@/components/Image';
 
 const Marquee = dynamic(() => import('./Marquee'));
 const Freeform = dynamic(() => import('../Freeform'), {

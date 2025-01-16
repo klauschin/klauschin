@@ -11,15 +11,8 @@ export const projectId = assertValue(
 	'Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID'
 );
 
-export const token = assertValue(
-	process.env.NEXT_PUBLIC_SANITY_API_READ_TOKEN,
-	'Missing environment variable: SANITY_API_READ_TOKEN'
-);
-export const revalidateSecret = assertValue(
-	process.env.SANITY_REVALIDATE_SECRET,
-	'Missing environment variable: SANITY_REVALIDATE_SECRET'
-);
-
+export const token = process.env.NEXT_PUBLIC_SANITY_API_READ_TOKEN;
+export const revalidateSecret = process.env.SANITY_REVALIDATE_SECRET;
 export const previewSecretId = 'preview.secret';
 
 export const useCdn = false;
