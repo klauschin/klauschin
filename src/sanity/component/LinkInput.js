@@ -58,25 +58,7 @@ export const LinkInput = (props) => {
 		const getOptionListData = async () => {
 			const groqQuery = `*[
 				_type == "pAbout" ||
-				_type == "pAmbassador" ||
-				_type == "pAmbassadorApply" ||
-				_type == "pBlog" ||
-				_type == "pBlogIndex" ||
-				_type == "pBrandMarketing" ||
-				_type == "pBuild"||
-				_type == "pCareers" ||
-				_type == "pCommunity" ||
-				_type == "pContact" ||
-				_type == "pDeveloperRelations" ||
-				_type == "pGeneral" ||
-				_type == "pGrants" ||
-				_type == "pGrantsApply" ||
-				_type == "pMarketingSupport" ||
-				_type == "pHome" ||
-				_type == "pNetworks" ||
-				_type == "pNetworksIndex" ||
-				_type == "pNewsletter" ||
-				_type == "pUseCase"] {
+				_type == "pHome"] {
 				title,
 				_type,
 				_id,

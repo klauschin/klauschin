@@ -2,12 +2,17 @@ import cx from 'classnames';
 import React from 'react';
 
 import CustomPortableText from '@/components/CustomPortableText';
-import { buildRgbaCssString } from '@/lib/helpers';
-import { useVsObject } from '@/hooks/useVsSetup';
+interface FreeformProps {
+	data: {
+		content: [];
+		sectionAppearance: any;
+	};
+	className?: String;
+}
 
-export default function Freeform({ data, className }) {
+export default function Freeform({ data, className }: FreeformProps) {
 	const { content, sectionAppearance } = data;
-	const { mobileBreakpoint } = useVsObject();
+	const mobileBreakpoint = 601;
 	const isPadding = sectionAppearance?.backgroundColor;
 	const spacingTop = sectionAppearance?.spacingTop || 0;
 	const spacingBottom = sectionAppearance?.spacingBottom || 0;
@@ -33,11 +38,6 @@ export default function Freeform({ data, className }) {
 				.free-form {
 					margin-left: auto;
 					margin-right: auto;
-					color: ${buildRgbaCssString(sectionAppearance?.textColor) ||
-					'inherit'};
-					background-color: ${buildRgbaCssString(
-						sectionAppearance?.backgroundColor
-					) || 'transparent'};
 
 					&.text-align-left {
 						text-align: left;

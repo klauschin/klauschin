@@ -1,7 +1,7 @@
 import { RefObject, MouseEvent, useEffect } from 'react';
 
 // Define a type for the ref parameter, which can be a single RefObject or an array of RefObjects
-type Refs = RefObject<HTMLElement>[] | RefObject<HTMLElement>;
+type Refs = RefObject<HTMLElement | null>[] | RefObject<HTMLElement | null>;
 
 export default function useOutsideClick(ref: Refs, callBackFunc: () => void) {
 	useEffect(() => {

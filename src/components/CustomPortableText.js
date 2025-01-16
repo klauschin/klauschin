@@ -5,7 +5,7 @@ import Img from '@/components/Image';
 
 const PortableTextComponents = {
 	block: {
-		h1: ({ children }) => <h1 className="t-h-1">{children}</h1>,
+		h1: ({ children }) => <h1 className="text-4xl">{children}</h1>,
 		h2: ({ children }) => <h2>{children}</h2>,
 		h3: ({ children }) => <h3>{children}</h3>,
 		h4: ({ children }) => <h4>{children}</h4>,

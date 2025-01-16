@@ -3,11 +3,15 @@ import React from 'react';
 import Img from '@/components/Image';
 
 const Marquee = dynamic(() => import('./Marquee'));
-const Freeform = dynamic(() => import('./Freeform'), {
+const Freeform = dynamic(() => import('../Freeform'), {
 	loading: () => <p>Loading...</p>,
 });
 
-export default function PageModules({ module }) {
+interface PageModulesProps {
+	module: any;
+}
+
+export default function PageModules({ module }: PageModulesProps) {
 	const type = module._type;
 
 	switch (type) {

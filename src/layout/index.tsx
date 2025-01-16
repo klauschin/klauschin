@@ -18,9 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			<AdaSkip />
 			<Announcement data={null} />
 			<Header />
-			<Main>
-				<div className="g-main-content bg-grey-100">{children}</div>
-			</Main>
+			<Main>{children}</Main>
 			<Footer />
 		</>
 	);

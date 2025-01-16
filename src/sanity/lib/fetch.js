@@ -6,7 +6,7 @@ import { token } from '@/sanity/env';
 import { groq } from 'next-sanity';
 
 export async function sanityFetch({ query, params = {}, tags }) {
-	const isPreviewMode = draftMode().isEnabled;
+	const isPreviewMode = (await draftMode()).isEnabled;
 
 	if (isPreviewMode && !token) {
 		throw new Error(

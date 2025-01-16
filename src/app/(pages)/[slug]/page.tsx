@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import PageGeneral from '../_components/PageGeneral';
 
 interface PageParamProps {
-	params: { slug: string };
+	params?: Promise<{ slug: string }>;
 }
 
 // export async function generateStaticParams() {
@@ -14,25 +14,25 @@ interface PageParamProps {
 // 	return params;
 // }
 
-const getPageData = async ({ params }: PageParamProps) => {
+const getPageData = async (params: PageParamProps) => {
 	const data = { page: { title: 'general page' } };
 	return data;
 };
 
 type MetadataProps = {
-	params: { slug: string };
-	searchParams: { [key: string]: string | string[] | undefined };
+	params: Promise<{ slug: string }>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
-export async function generateMetadata({
-	params,
-	searchParams,
-}: MetadataProps): Promise<Metadata> {
-	const data = await getPageData({ params });
+
+export async function generateMetadata(
+	props: MetadataProps
+): Promise<Metadata> {
+	const data = await getPageData(props);
 	return defineMetadata({ data });
 }
 
-export default async function PageSlugRoute({ params }: PageParamProps) {
-	const data = await getPageData({ params });
+export default async function PageSlugRoute(props: PageParamProps) {
+	const data = await getPageData(props);
 	const { page } = data || {};
 
 	if (!page) {
