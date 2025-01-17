@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidateTag } from 'next/cache';
 import { parseBody } from 'next-sanity/webhook';
-
 import { revalidateSecret } from '@/sanity/env';
 
 /**

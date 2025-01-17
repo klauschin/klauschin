@@ -15,6 +15,7 @@ export const checkIfActive = ({
 };
 
 export const getRoute = ({ slug }: { slug: string | undefined }): string => {
+	console.log('🚀 ~ file: routes.ts:18 ~ getRoute ~ slug:', slug);
 	switch (slug) {
 		case 'home':
 			return '/';

@@ -1,22 +1,18 @@
 import React from 'react';
 import { Metadata } from 'next';
-import defineMetadata from '@/lib/defineMetadata';
 import { notFound } from 'next/navigation';
+import defineMetadata from '@/lib/defineMetadata';
 import PageGeneral from '../_components/PageGeneral';
+import { getPageBySlug, getPagesPaths } from '@/sanity/lib/fetch';
 
-interface PageParamProps {
-	params?: Promise<{ slug: string }>;
+export async function generateStaticParams() {
+	const { data: slugs } = await getPagesPaths({ pageType: 'pGeneral' });
+	const params = slugs.map((slug: string) => ({ slug }));
+	return params;
 }
 
-// export async function generateStaticParams() {
-// 	const slugs = await getPagesPaths({ pageType: 'pGeneral' });
-// 	const params = slugs.map((slug: string) => ({ slug }));
-// 	return params;
-// }
-
-const getPageData = async (params: PageParamProps) => {
-	const data = { page: { title: 'general page' } };
-	return data;
+const getPageData = async (slug: string) => {
+	return await getPageBySlug({ slug });
 };
 
 type MetadataProps = {
@@ -24,15 +20,21 @@ type MetadataProps = {
 	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(
-	props: MetadataProps
-): Promise<Metadata> {
-	const data = await getPageData(props);
+export async function generateMetadata({
+	params,
+}: MetadataProps): Promise<Metadata> {
+	const { slug } = await params;
+	const data = await getPageData(slug);
 	return defineMetadata({ data });
 }
 
-export default async function PageSlugRoute(props: PageParamProps) {
-	const data = await getPageData(props);
+export default async function PageSlugRoute({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}) {
+	const { slug } = await params;
+	const data = await getPageData(slug);
 	const { page } = data || {};
 
 	if (!page) {

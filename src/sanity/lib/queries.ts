@@ -1,18 +1,18 @@
-import { groq } from 'next-sanity';
+import { defineQuery } from 'next-sanity';
 
 // Construct our "home" page GROQ
-export const homeID = groq`*[_type=="pHome"][0]._id`;
-export const staticPageSlug = groq`[]`;
+export const homeID = defineQuery(`*[_type=="pHome"][0]._id`);
+export const staticPageSlug = defineQuery(`[]`);
 
 // Construct our "link" GROQ
-const link = groq`
+const link = defineQuery(`
 	_type,
 	route,
 	isNewTab
-`;
+`);
 
 // Construct our "menu" GROQ
-const menu = groq`
+const menu = defineQuery(`
 	_key,
 	_type,
 	title,
@@ -29,10 +29,10 @@ const menu = groq`
 			},
 		}
 	}
-`;
+`);
 
 // Construct our "image meta" GROQ
-export const imageMeta = groq`
+export const imageMeta = defineQuery(`
 	"alt": coalesce(alt, asset->altText),
 	asset,
 	crop,
@@ -44,18 +44,18 @@ export const imageMeta = groq`
 	"height": asset->metadata.dimensions.height,
 	"aspectRatio": asset->metadata.dimensions.aspectRatio,
 	"lqip": asset->metadata.lqip
-`;
+`);
 
-export const callToAction = groq`
+export const callToAction = defineQuery(`
 	label,
 	link {
 		${link}
 	},
 	"isButton": true
-`;
+`);
 
 // Construct our "portable text content" GROQ
-export const portableTextContent = groq`
+export const portableTextContent = defineQuery(`
 	...,
 	markDefs[]{
 		...,
@@ -69,9 +69,9 @@ export const portableTextContent = groq`
 	_type == "image" => {
 		${imageMeta}
 	}
-`;
+`);
 
-export const freeformObj = groq`
+export const freeformObj = defineQuery(`
 	...,
 	_type,
 	_key,
@@ -79,10 +79,10 @@ export const freeformObj = groq`
 		${portableTextContent}
 	},
 	sectionAppearance
-`;
+`);
 
 // Construct our content "modules" GROQ
-export const pageModules = groq`
+export const pageModules = defineQuery(`
 	_type == 'freeform' => {
 		${freeformObj}
 	},
@@ -112,10 +112,10 @@ export const pageModules = groq`
 		reverse,
 		pausable
 	},
-`;
+`);
 
 // Construct our "site" GROQ
-export const site = groq`
+export const site = defineQuery(`
 	"site": {
 		"title": *[_type == "settingsGeneral"][0].siteTitle,
 		"favicon": *[_type == "settingsGeneral"][0].favicon,
@@ -152,9 +152,9 @@ export const site = groq`
 			KlaviyoApiKey,
 		},
 	}
-`;
+`);
 
-export const pageHomeQuery = `
+export const pageHomeQuery = defineQuery(`
 	*[_type == "pHome"][0]{
 		title,
 		"slug": slug.current,
@@ -164,9 +164,9 @@ export const pageHomeQuery = `
 		},
 		sharing
 	}
-`;
+`);
 
-export const page404Query = `*[_type == "p404" && _id == "p404"][0]{
+export const page404Query = defineQuery(`*[_type == "p404" && _id == "p404"][0]{
 	heading,
 	"slug": "404",
 	paragraph[]{
@@ -175,9 +175,9 @@ export const page404Query = `*[_type == "p404" && _id == "p404"][0]{
 	callToAction{
 		${callToAction}
 	}
-}`;
+}`);
 
-export const pagesBySlugQuery = groq`
+export const pagesBySlugQuery = defineQuery(`
 	*[_type == "pGeneral" && slug.current == $slug][0]{
 			title,
 			"slug": slug.current,
@@ -185,12 +185,12 @@ export const pagesBySlugQuery = groq`
 			pageModules[]{
 				${pageModules}
 			},
-	}`;
+	}`);
 
 // new pages below...
-// export const pageAboutQuery = groq`
+// export const pageAboutQuery = defineQuery(`
 // 	*[_type == "pSpace"][0]{
 // 			title,
 // 			"slug": slug.current,
 // 			sharing
-// 	}`;
+// 	}`);

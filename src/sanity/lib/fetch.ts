@@ -1,30 +1,9 @@
 import 'server-only';
-import { draftMode } from 'next/headers';
-import { client } from '@/sanity/lib/client';
+
+import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch as sanityLiveFetch } from '@/sanity/lib/live';
 import * as queries from '@/sanity/lib/queries';
-import { token } from '@/sanity/env';
-import { groq } from 'next-sanity';
-
-export async function sanityFetch({ query, params = {}, tags }) {
-	const isPreviewMode = (await draftMode()).isEnabled;
-
-	if (isPreviewMode && !token) {
-		throw new Error(
-			'The `SANITY_API_READ_TOKEN` environment variable is required.'
-		);
-	}
-
-	return client.fetch(query, params, {
-		...(isPreviewMode && {
-			token: token,
-			perspective: 'previewDrafts',
-		}),
-		next: {
-			revalidate: isPreviewMode ? 0 : false,
-			tags,
-		},
-	});
-}
+import { defineQuery } from 'next-sanity';
 
 export async function getSiteData() {
 	const data = sanityFetch({
@@ -44,7 +23,7 @@ export async function getSiteData() {
 	return data;
 }
 
-const getPageDataStructure = ({ query }) => {
+const getPageDataStructure = ({ query }: { query: string }) => {
 	const data = `{
 		"page": ${query},
 		${queries.site}
@@ -71,28 +50,28 @@ export async function get404PageData() {
 	});
 }
 
-export function getPagesPaths({ pageType }) {
-	const getQuery = (pageType) => {
+export function getPagesPaths({ pageType }: { pageType: string }) {
+	const getQuery = (pageType: string) => {
 		switch (pageType) {
 			case 'pGeneral':
-				return groq`*[_type == "pGeneral" ].slug.current`;
+				return defineQuery(`*[_type == "pGeneral" ].slug.current`);
 			default:
 				console.warn('Invalid Page Type:', pageType);
-				return groq`*[_type == "pGeneral" ].slug.current`;
+				return defineQuery(`*[_type == "pGeneral" ].slug.current`);
 		}
 	};
 
 	const query = getQuery(pageType);
-	return client.fetch(query, {}, { token, perspective: 'published' });
+	return sanityLiveFetch({ query, perspective: 'published', stega: false });
 }
 
-export function getPageBySlug({ queryParams }) {
+export function getPageBySlug({ slug }: { slug: string }) {
 	const query = getPageDataStructure({ query: queries.pagesBySlugQuery });
 
 	return sanityFetch({
 		query,
-		params: queryParams,
-		tags: [`pGeneral:${queryParams.slug}`],
+		params: { slug },
+		tags: [`pGeneral:${slug}`],
 	});
 }
 
