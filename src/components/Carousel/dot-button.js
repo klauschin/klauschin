@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 
 export const DotButton = (props) => {
 	const { selected, onClick } = props;
@@ -8,7 +8,7 @@ export const DotButton = (props) => {
 		<button
 			type="button"
 			onClick={onClick}
-			className={cx('c-carousel__dot', {
+			className={clsx('c-carousel__dot', {
 				'is-selected': selected,
 			})}
 		/>

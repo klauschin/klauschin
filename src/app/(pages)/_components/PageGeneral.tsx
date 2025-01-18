@@ -2,7 +2,11 @@
 import React from 'react';
 import PageModules from '@/components/PageModules';
 
-export default function PageGeneral({ data }) {
+export interface PageGeneralProps {
+	data: { pageModules: [] };
+}
+
+export default function PageGeneral({ data }: PageGeneralProps) {
 	const { pageModules } = data || {};
 
 	return (

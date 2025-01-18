@@ -14,12 +14,20 @@ export const checkIfActive = ({
 	}
 };
 
-export const getRoute = ({ slug }: { slug: string | undefined }): string => {
-	switch (slug) {
-		case 'home':
+export const getRoute = ({
+	documentType,
+	slug,
+}: {
+	documentType: string | undefined;
+	slug: string | undefined;
+}): string => {
+	if (!documentType) return '';
+
+	switch (documentType) {
+		case 'pHome':
 			return '/';
 		case 'externalUrl':
-			return slug;
+			return slug || '';
 
 		default:
 			return slug ? `/${slug}` : '';

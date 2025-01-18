@@ -9,13 +9,17 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@radix-ui/react-slot": "^1.1.1",
 		"@react-three/drei": "^9.121.1",
 		"@react-three/fiber": "^9.0.0-alpha.8",
 		"@sanity/color-input": "^3.1.1",
 		"@sanity/image-url": "^1.1.0",
+		"@sanity/ui": "2.11.2",
 		"@sanity/vision": "^3.70.0",
 		"@types/three": "^0.165.0",
+		"class-variance-authority": "^0.7.1",
 		"classnames": "^2.5.1",
+		"clsx": "^2.1.1",
 		"framer-motion": "^11.2.6",
 		"glsl-noise": "^0.0.0",
 		"next": "^15.1.4",
@@ -27,6 +31,7 @@
 		"sanity-plugin-media": "^2.2.5",
 		"sass": "^1.77.2",
 		"styled-components": "^6.1.14",
+		"tailwind-merge": "^2.6.0",
 		"three": "^0.165.0"
 	},
 	"devDependencies": {

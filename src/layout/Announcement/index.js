@@ -1,9 +1,9 @@
 'use client';
 import './style.scss';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
-import { formatNumberSuffix } from '../../lib/helpers';
+import { formatNumberSuffix } from '../../lib/utils';
 
 export default function Announcement({ data }) {
 	const pathname = usePathname();
@@ -92,7 +92,7 @@ export default function Announcement({ data }) {
 						const activeBlockNext =
 							activeBlock < data?.messages.length - 1 ? activeBlock + 1 : 0;
 						setActiveBlock(activeBlockNext);
-				  }, interval * 1000)
+					}, interval * 1000)
 				: null;
 
 		return () => clearInterval(autoplayInterval);
@@ -108,7 +108,7 @@ export default function Announcement({ data }) {
 								return (
 									<div
 										key={index}
-										className={cx('block', {
+										className={clsx('block', {
 											'is-active': activeBlock == index,
 										})}
 									>
@@ -129,7 +129,7 @@ export default function Announcement({ data }) {
 									aria-label={`Jump to the ${formatNumberSuffix(
 										index + 1
 									)} message`}
-									className={cx({ 'is-active': activeBlock == index })}
+									className={clsx({ 'is-active': activeBlock == index })}
 									onClick={() => updateActiveBlock(index)}
 								></button>
 							);

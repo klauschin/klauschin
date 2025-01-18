@@ -1,5 +1,5 @@
 import './style.scss';
-import cx from 'classnames';
+import clsx from 'clsx';
 import Autoplay from 'embla-carousel-autoplay';
 import AutoHeight from 'embla-carousel-auto-height';
 import ClassNames from 'embla-carousel-class-names';
@@ -104,7 +104,7 @@ export default function Carousel({
 		<>
 			<div
 				ref={emblaRef}
-				className={cx('c-carousel', className, {
+				className={clsx('c-carousel', className, {
 					'is-fade': isFade,
 				})}
 				style={{

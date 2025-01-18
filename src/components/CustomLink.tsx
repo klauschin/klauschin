@@ -1,8 +1,19 @@
-import cx from 'classnames';
+import clsx from 'clsx';
 import NextLink from 'next/link';
 import React from 'react';
 
 export { NextLink };
+
+interface CustomLinkProps {
+	link: { route: string; isNewTab?: boolean | undefined };
+	title?: string;
+	children: React.ReactNode;
+	className?: string;
+	ariaLabel?: string;
+	isNewTab?: boolean;
+	isButton?: boolean;
+}
+
 export default function CustomLink({
 	link,
 	title,
@@ -12,7 +23,7 @@ export default function CustomLink({
 	isNewTab,
 	isButton,
 	...props
-}) {
+}: CustomLinkProps) {
 	if (!link.route) {
 		return null;
 	}
@@ -23,15 +34,16 @@ export default function CustomLink({
 	return (
 		<NextLink
 			href={route}
-			target={route?.match('^mailto:') || isOpenNewTab ? '_blank' : null}
-			rel={isOpenNewTab ? 'noopener noreferrer' : null}
+			title={title}
+			target={route?.match('^mailto:') || isOpenNewTab ? '_blank' : undefined}
+			rel={isOpenNewTab ? 'noopener noreferrer' : undefined}
 			aria-label={ariaLabel || `${title || `Go to ${route}`}`}
-			className={cx(className, {
+			className={clsx(className, {
 				btn: isButton,
 			})}
 			{...props}
 		>
-			{title || children}
+			{children}
 		</NextLink>
 	);
 }
