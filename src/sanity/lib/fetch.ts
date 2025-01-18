@@ -46,7 +46,7 @@ export async function get404PageData() {
 
 	return sanityFetch({
 		query,
-		tags: [`p404`],
+		tags: ['p404'],
 	});
 }
 

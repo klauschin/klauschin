@@ -2,9 +2,9 @@
 import './style.scss';
 import React, { useEffect, useState } from 'react';
 import SvgIcons from '@/components/SvgIcons';
-import cx from 'classnames';
+import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
-import { scrollEnable, scrollDisable } from '@/lib/helpers';
+import { scrollEnable, scrollDisable } from '@/lib/utils';
 import Link from 'next/link';
 import MobileMenuTrigger from './MobileMenuTrigger';
 
@@ -26,7 +26,7 @@ export default function Header() {
 	return (
 		<>
 			<header
-				className={cx('g-header f-h f-a-c', {
+				className={clsx('g-header f-h f-a-c', {
 					'is-open': isMobileMenuOpen,
 				})}
 			></header>

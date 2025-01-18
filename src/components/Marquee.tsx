@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 
 interface MarqueeItem {
 	_type: 'simple';
@@ -28,7 +28,7 @@ const Marquee: React.FC<MarqueeProps> = ({ data, children }) => {
 	return (
 		<>
 			<div
-				className={cx('marquee user-select-disable', {
+				className={clsx('marquee user-select-disable', {
 					'is-pausable': pausable,
 				})}
 				data-direction={reverse ? 'right' : 'left'}
@@ -47,7 +47,7 @@ const Marquee: React.FC<MarqueeProps> = ({ data, children }) => {
 										return (
 											<span
 												key={index}
-												className={cx('marquee-text', item.font)}
+												className={clsx('marquee-text', item.font)}
 											>
 												{item.text}
 											</span>

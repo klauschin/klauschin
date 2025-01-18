@@ -1,6 +1,6 @@
 import './style.scss';
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 
 export default function MobileMenuTrigger({
 	isMobileMenuOpen,
@@ -12,7 +12,7 @@ export default function MobileMenuTrigger({
 	return (
 		<button
 			aria-label="Toggle Menu"
-			className={cx('g-mobile-menu-trigger mobile-down-only', {
+			className={clsx('g-mobile-menu-trigger mobile-down-only', {
 				'is-open': isMobileMenuOpen,
 			})}
 			onClick={onHandleClick}

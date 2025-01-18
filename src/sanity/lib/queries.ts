@@ -168,8 +168,7 @@ export const pageHomeQuery = defineQuery(`
 
 export const page404Query = defineQuery(`*[_type == "p404" && _id == "p404"][0]{
 	heading,
-	"slug": "404",
-	paragraph[]{
+	content[]{
 		${portableTextContent}
 	},
 	callToAction{

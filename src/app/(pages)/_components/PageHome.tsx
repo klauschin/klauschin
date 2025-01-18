@@ -4,11 +4,11 @@ import type { HomePageData } from '@/types';
 import CustomPortableText from '@/components/CustomPortableText';
 import InteractiveWater from '@/components/InteractiveWater';
 
-export interface PageHome {
+export interface PageHomeProps {
 	data: HomePageData;
 }
 
-export default function PageHome({ data }: PageHome) {
+export default function PageHome({ data }: PageHomeProps) {
 	const { content } = data || {};
 
 	return (

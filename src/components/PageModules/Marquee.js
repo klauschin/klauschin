@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import Image from '@/components/Image';
 
 export default function Marquee(data) {
@@ -11,7 +11,7 @@ export default function Marquee(data) {
 	return (
 		<>
 			<div
-				className={cx('marquee user-select-disable', {
+				className={clsx('marquee user-select-disable', {
 					'is-pausable': pausable,
 				})}
 				data-direction={reverse ? 'right' : 'left'}
@@ -31,7 +31,7 @@ export default function Marquee(data) {
 											return (
 												<span
 													key={index}
-													className={cx('marquee-text', item.font)}
+													className={clsx('marquee-text', item.font)}
 												>
 													{item.text}
 												</span>

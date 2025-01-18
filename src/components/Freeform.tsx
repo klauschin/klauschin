@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 
 import CustomPortableText from '@/components/CustomPortableText';
@@ -23,7 +23,7 @@ export default function Freeform({ data, className }: FreeformProps) {
 	return (
 		<>
 			<section
-				className={cx(
+				className={clsx(
 					'free-form',
 					'wysiwyg',
 					`text-align-${sectionAppearance?.textAlign || 'none'}`,

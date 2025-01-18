@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 
@@ -73,7 +73,7 @@ const Img: React.FC<ImgProps> = ({
 						setLoaded(true);
 					},
 				})}
-				className={cx({
+				className={clsx({
 					lazyload: !isLoaded,
 					lazyloaded: isLoaded,
 				})}
