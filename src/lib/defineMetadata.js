@@ -3,7 +3,6 @@ import { imageBuilder } from '@/sanity/lib/image';
 import { getRoute } from '@/lib/routes';
 
 export default function defineMetadata({ data }) {
-	console.log('🚀 ~ :6 ~ defineMetadata ~ data:', data);
 	const { site, page } = data || {};
 	const { _type, slug } = page || {};
 
