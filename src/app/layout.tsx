@@ -19,7 +19,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html>
+		<html className="overflow-hidden">
 			<body className={`${awConqueror.variable} font-display antialiased`}>
 				<Layout>{children}</Layout>
 			</body>

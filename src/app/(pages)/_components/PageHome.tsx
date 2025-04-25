@@ -12,10 +12,8 @@ export default function PageHome({ data }: PageHomeProps) {
 	const { content } = data || {};
 
 	return (
-		<div className="h-screen flex flex-col justify-center items-center">
-			<div className="p-fill">
-				<InteractiveWater />
-			</div>
+		<div className="h-screen flex flex-col justify-center items-center relative">
+			<InteractiveWater />
 			<div className="relative z-10 text-white p-contain max-w-5xl">
 				{content && <CustomPortableText blocks={content} />}
 			</div>

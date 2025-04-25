@@ -202,7 +202,10 @@ export default function InteractiveWater() {
 	}
 
 	return (
-		<div className="w-full h-full" onMouseMove={handleMouseMove}>
+		<div
+			className="h-screen w-full absolute top-0 lef-0"
+			onMouseMove={handleMouseMove}
+		>
 			<Canvas>
 				<ShaderPlane mousePosition={mousePosition} />
 			</Canvas>
