@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import AdaSkip from './AdaSkip';
+// import AdaSkip from './AdaSkip';
 import Announcement from './Announcement';
 import Footer from './Footer';
 import Header from './Header';
@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 	return (
 		<>
-			<AdaSkip />
+			{/* <AdaSkip /> */}
 			<Announcement data={null} />
 			<Header />
 			<Main>{children}</Main>

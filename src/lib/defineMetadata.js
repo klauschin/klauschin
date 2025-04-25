@@ -1,31 +1,33 @@
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadata-fields
+import { imageBuilder } from '@/sanity/lib/image';
+import { getRoute } from '@/lib/routes';
 
-const imageBuilder = () => {
-	return '';
-};
 export default function defineMetadata({ data }) {
+	console.log('🚀 ~ :6 ~ defineMetadata ~ data:', data);
 	const { site, page } = data || {};
+	const { _type, slug } = page || {};
+
 	const siteTitle = site?.title || '';
-	const metaDesc = page?.sharing?.metaDesc || site?.sharing?.metaDesc;
-	const metaTitle =
-		page?.isHomepage == true
-			? page?.sharing?.metaTitle || siteTitle
-			: `${
-					page?.sharing?.metaTitle || page?.title || 'Page not found'
-				} | ${siteTitle}`;
+	const metaDesc = page?.sharing?.metaDesc || '';
+	const metaTitle = page?.isHomepage
+		? page?.sharing?.metaTitle || siteTitle
+		: `${page?.sharing?.metaTitle || page?.title || 'Page not found'} | ${siteTitle}`;
 
 	const siteFavicon = site?.sharing?.favicon || false;
 	const siteFaviconUrl = siteFavicon
 		? imageBuilder.image(siteFavicon).width(256).height(256).url()
 		: '/favicon.ico';
+	const siteFaviconLight = site?.sharing?.faviconLight || false;
+	const siteFaviconLightUrl = siteFaviconLight
+		? imageBuilder.image(siteFaviconLight).width(256).height(256).url()
+		: siteFaviconUrl;
 
 	const shareGraphic =
-		page?.sharing?.shareGraphic?.asset ||
-		site?.sharing?.shareGraphic?.asset ||
-		'';
+		page?.sharing?.shareGraphic?.asset || site?.sharing?.shareGraphic?.asset;
+
 	const shareGraphicUrl = shareGraphic
-		? imageBuilder.image(shareGraphic).url()
-		: false;
+		? imageBuilder.image(shareGraphic).width(1200).url()
+		: null;
 
 	const disableIndex = page?.sharing?.disableIndex;
 
@@ -45,7 +47,16 @@ export default function defineMetadata({ data }) {
 			type: 'website',
 		},
 		icons: {
-			icon: siteFaviconUrl,
+			icon: [
+				{
+					url: siteFaviconUrl,
+					media: '(prefers-color-scheme: light)',
+				},
+				{
+					url: siteFaviconLightUrl,
+					media: '(prefers-color-scheme: dark)',
+				},
+			],
 		},
 		twitter: {
 			card: 'summary_large_image',
@@ -56,17 +67,18 @@ export default function defineMetadata({ data }) {
 		},
 		metadataBase: new URL(process.env.SITE_URL),
 		alternates: {
-			canonical: '/',
+			canonical: `${process.env.SITE_URL}${getRoute({
+				documentType: _type,
+				slug: slug,
+			})}`,
 			languages: {
 				'en-US': '/en-US',
 			},
 		},
-		...(disableIndex && {
-			robots: {
-				index: false,
-				follow: false,
-				nocache: true,
-			},
-		}),
+		robots: {
+			index: disableIndex ? false : true,
+			follow: disableIndex ? false : true,
+			nocache: true,
+		},
 	};
 }

@@ -1,5 +1,5 @@
 .g-ada-skip {
-	position: fixed !important;
+	position: fixed;
 	top: calc(var(--s-announcement-dynamic, var(--s-announcement, 0px)) + 10px);
 	left: 10px;
 	transform: translateY(-100vh);
